@@ -1,6 +1,7 @@
 # cpp-assignment
-assignment 1
-
+Anushka Bohare
+soc-13
+roll no 17
 
 **Experiment – 1 **
 
