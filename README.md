@@ -1014,3 +1014,281 @@ Area of rect2: 12
 Total area (rect1 + rect2) using overloaded +: 62 --- Function Overriding --- 
 This is a rectangle with length 7 and width 2.
 
+Experiment 12
+
+
+#include <iostream> 
+using namespace std; 
+// Base class 
+class Shape 
+{ 
+public: 
+// Virtual function 
+virtual void area() 
+{ 
+} 
+cout << "Area of generic shape is unknown." << endl; 
+}; 
+ 
+// Derived class: Rectangle 
+class Rectangle : public Shape 
+{ 
+private: 
+    float length, width; 
+ 
+public: 
+    Rectangle(float l, float w) 
+    { 
+        length = l; 
+        width = w; 
+    } 
+ 
+    // Overriding virtual function 
+    void area() override 
+    { 
+        cout << "Area of rectangle = " << length * width << endl; 
+    } 
+}; 
+ 
+// Derived class: Circle 
+class Circle : public Shape 
+{ 
+private: 
+    float radius; 
+ 
+public: 
+    Circle(float r) 
+    { 
+        radius = r; 
+    } 
+ 
+    // Overriding virtual function 
+    void area() override 
+    { 
+        cout << "Area of circle = " << 3.1416 * radius * radius << endl; 
+    } 
+}; 
+// Main function 
+int main() 
+{ 
+    Shape *s1, *s2;        // Base class pointers 
+    Rectangle rect(10, 5); 
+    Circle circ(7); 
+ 
+    // Assign derived objects to base class pointers 
+    s1 = &rect; 
+    s2 = &circ; 
+cout << "--- Virtual Function Demonstration ---\n"; 
+s1->area();   // Calls Rectangle's area() 
+s2->area();   // Calls Circle's area() 
+return 0; 
+} 
+OUTPUT --- Virtual Function Demonstration --- 
+Area of rectangle = 50 
+Area of circle = 153.938
+
+Experiment 13
+
+#include <iostream> 
+using namespace std; 
+ 
+// Template function to swap two values 
+template <typename T> 
+void swapValues(T &a, T &b) 
+{ 
+    T temp = a; 
+    a = b; 
+    b = temp; 
+} 
+ 
+// Main function 
+int main() 
+{ 
+    int x = 10, y = 20; 
+    float p = 5.5, q = 9.8; 
+    char c1 = 'A', c2 = 'Z'; 
+ 
+    // Swapping integers 
+    cout << "--- Swapping Integers ---" << endl; 
+    cout << "Before swap: x = " << x << ", y = " << y << endl; 
+    swapValues(x, y); 
+    cout << "After swap:  x = " << x << ", y = " << y << endl; 
+ 
+    // Swapping floats 
+    cout << "\n--- Swapping Floats ---" << endl; 
+    cout << "Before swap: p = " << p << ", q = " << q << endl; 
+    swapValues(p, q); 
+    cout << "After swap:  p = " << p << ", q = " << q << endl; 
+ 
+    // Swapping characters 
+    cout << "\n--- Swapping Characters ---" << endl; 
+    cout << "Before swap: c1 = " << c1 << ", c2 = " << c2 << endl; 
+    swapValues(c1, c2); 
+    cout << "After swap:  c1 = " << c1 << ", c2 = " << c2 << endl; 
+ 
+    return 0; 
+} 
+OUTPUT --- Swapping Integers --- 
+Before swap: x = 10, y = 20 
+After swap:  x = 20, y = 10 
+ --- Swapping Floats --- 
+Before swap: p = 5.5, q = 9.8 
+After swap:  p = 9.8, q = 5.5 --- Swapping Characters --- 
+Before swap: c1 = A, c2 = Z 
+After swap:  c1 = Z, c2 = A
+
+
+Experiment 14
+
+#include <iostream> 
+using namespace std; 
+int main() { 
+try { 
+int age = 15; 
+if (age >= 18) { 
+cout << "Access granted - you are old enough."; 
+} else { 
+throw (age); 
+} 
+} 
+catch (int myNum) { 
+cout << "Access denied - You must be at least 18 years old.\n"; 
+cout << "Age is: " << myNum;   
+} 
+return 0; 
+} 
+Program Code: 
+Program: Arithmetic Exception Handling 
+#include <iostream> 
+using namespace std; 
+int main() 
+{ 
+int num1, num2; 
+float result; 
+cout << "Enter numerator: "; 
+cin >> num1; 
+cout << "Enter denominator: "; 
+cin >> num2; 
+try 
+{ 
+} 
+// Check for division by zero 
+if (num2 == 0) 
+throw "Error: Division by zero is not allowed!"; 
+else 
+{ 
+} 
+result = (float)num1 / num2; 
+cout << "Result = " << result << endl; 
+catch (const char *msg) 
+{ 
+} 
+// Catching the exception 
+cout << msg << endl; 
+return 0; 
+} 
+OUTPUT 1 (Valid Division) 
+Enter numerator: 10 
+Enter denominator: 2 
+Result = 5 
+OUTPUT 2 (Division by Zero) 
+Enter numerator: 15 
+Enter denominator: 0 
+Error: Division by zero is not allowed!
+
+
+Experiment 15
+
+public class ArithmeticOperations { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+ 
+        System.out.print("Enter first number: "); 
+        double num1 = sc.nextDouble(); 
+ 
+        System.out.print("Enter second number: "); 
+        double num2 = sc.nextDouble(); 
+ 
+        // Addition 
+        double sum = num1 + num2; 
+        // Subtraction 
+        double diff = num1 - num2; 
+        // Multiplication 
+        double prod = num1 * num2; 
+        // Division 
+        double div = 0; 
+        if (num2 != 0) { 
+            div = num1 / num2; 
+        } else { 
+            System.out.println("Warning: Division by zero is not allowed!"); 
+        } 
+        // Modulus 
+        double mod = 0; 
+        if (num2 != 0) { 
+            mod = num1 % num2; 
+        } 
+ 
+        System.out.println("\n--- Arithmetic Operations ---"); 
+        System.out.println("Addition       : " + sum); 
+        System.out.println("Subtraction    : " + diff); 
+        System.out.println("Multiplication : " + prod); 
+        if (num2 != 0) { 
+            System.out.println("Division       : " + div); 
+            System.out.println("Modulus        : " + mod); 
+        } 
+ 
+        sc.close(); 
+    } 
+} 
+ 
+Java Output 
+Enter first number: 12 
+Enter second number: 5 
+ 
+--- Arithmetic Operations --- 
+Addition       
+: 17.0 
+Subtraction    : 7.0 
+Multiplication : 60.0 
+Division       
+Modulus        
+: 2.4 
+: 2.0 
+3. Python Program for Arithmetic Operations 
+# Read two numbers from user 
+num1 = float(input("Enter first number: ")) 
+num2 = float(input("Enter second number: ")) 
+# Addition 
+sum_result = num1 + num2 
+# Subtraction 
+diff_result = num1 - num2 
+# Multiplication 
+prod_result = num1 * num2 
+# Division 
+if num2 != 0: 
+div_result = num1 / num2 
+mod_result = num1 % num2 
+else: 
+div_result = None 
+mod_result = None 
+print("Warning: Division by zero is not allowed!") 
+# Display results 
+print("\n--- Arithmetic Operations ---") 
+print("Addition       
+:", sum_result) 
+print("Subtraction    :", diff_result) 
+print("Multiplication :", prod_result) 
+if div_result is not None: 
+print("Division       
+print("Modulus        
+Python Output 
+:", div_result) 
+:", mod_result) 
+Enter first number: 12 
+Enter second number: 5 --- Arithmetic Operations --- 
+Addition       
+: 17.0 
+Subtraction    : 7.0 
+Multiplication : 60.0 
+Division     : 2.4    
+Modulus     : 2.0
